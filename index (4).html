@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nostalgia – Máy ảnh Instax & film</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap">
+<style>
+:root{--ink:#1d2433;--paper:#f4f5f8;--card:#fff;--mint:#dfe5f0;--sun:#f2a900;--muted:#566077;--line:#d9deea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e8f1ec;--paper:#0f1c19;--card:#17292550;--mint:#1f3a33;--muted:#9bb5ac;--line:#27413a}}
+:root[data-theme="dark"]{--ink:#e8f1ec;--paper:#0f1c19;--card:#172925;--mint:#1f3a33;--muted:#9bb5ac;--line:#27413a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Be Vietnam Pro",system-ui,sans-serif;line-height:1.6}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:800;font-size:1.1rem;text-decoration:none}
+nav a{margin-right:18px;text-decoration:none;font-weight:500;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.btn{background:var(--ink);color:var(--paper);border:0;border-radius:8px;padding:10px 18px;font-weight:700}
+.btn.sun{background:var(--sun);color:#12302b}
+.hero{padding:64px 0 48px}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.1;margin:0 0 16px;font-weight:800;max-width:14ch}
+.hero p{max-width:46ch;color:var(--muted);font-size:1.1rem;margin:0 0 24px}
+.perks{display:flex;gap:24px;flex-wrap:wrap;margin-top:28px;color:var(--muted);font-size:.95rem}
+h2{font-size:1.6rem;margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.pic{background:var(--mint);font-size:3.5rem;text-align:center;padding:28px 0}.pic:has(img){padding:0}.pic img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.hero{position:relative}
+.mascot{position:absolute;right:20px;top:40px;width:230px;height:auto}
+.m{animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.video{aspect-ratio:16/9;max-width:720px;border-radius:12px;overflow:hidden;background:var(--mint);display:grid;place-items:center;text-align:center;color:var(--muted)}
+.video iframe{width:100%;height:100%;border:0}
+@media (max-width:760px){.mascot{position:static;display:block;width:150px;margin:0 0 16px}}
+@media (prefers-reduced-motion:reduce){.m{animation:none}}
+.card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{margin:0;font-size:1.05rem}
+.card small{color:var(--muted)}
+.price{font-weight:800;font-size:1.1rem;margin-top:auto}
+section{padding:40px 0}
+.about{background:var(--mint)}
+.about p{max-width:60ch;margin:0}
+form{display:grid;gap:12px;max-width:440px}
+label{font-weight:500;display:grid;gap:4px}
+input{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+footer{padding:28px 0;color:var(--muted);border-top:1px solid var(--line);font-size:.9rem}
+#cartBtn span{background:var(--sun);color:#12302b;border-radius:99px;padding:0 8px;margin-left:6px}
+aside{position:fixed;top:0;right:0;height:100%;width:min(380px,100%);background:var(--paper);border-left:1px solid var(--line);padding:20px;transform:translateX(100%);transition:transform .25s;z-index:10;overflow:auto;padding-top:calc(20px + env(safe-area-inset-top,0px))}
+aside.open{transform:none}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.qty button{width:28px;height:28px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.total{display:flex;justify-content:space-between;font-weight:800;font-size:1.15rem;margin:16px 0}
+#msg{white-space:pre-wrap;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;margin-top:12px;font-size:.9rem}
+@media (prefers-reduced-motion:reduce){aside{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="logo" href="#top">Nostalgia</a>
+<nav><a href="#sanpham">Sản phẩm</a><a href="#video">Video</a><a href="#gioithieu">Giới thiệu</a><a href="#lienhe">Liên hệ</a></nav>
+<button class="btn" id="cartBtn" aria-label="Mở giỏ hàng">Giỏ hàng<span id="count">0</span></button>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+<svg class="mascot" viewBox="0 0 200 190" role="img" aria-label="Linh vật máy ảnh của Nostalgia"><g class="m"><rect x="70" y="22" width="36" height="24" rx="7" fill="#1d2433"/><rect x="132" y="26" width="24" height="14" rx="5" fill="#1d2433"/><rect x="56" y="156" width="30" height="16" rx="8" fill="#1d2433"/><rect x="114" y="156" width="30" height="16" rx="8" fill="#1d2433"/><rect x="20" y="40" width="160" height="120" rx="28" fill="#f2a900" stroke="#1d2433" stroke-width="5"/><rect x="34" y="52" width="26" height="16" rx="5" fill="#fff" stroke="#1d2433" stroke-width="3"/><circle cx="100" cy="96" r="38" fill="#fff" stroke="#1d2433" stroke-width="5"/><circle cx="100" cy="96" r="25" fill="#1d2433"/><circle cx="100" cy="96" r="13" fill="#3a4a6b"/><circle cx="92" cy="88" r="6" fill="#fff"/><circle cx="109" cy="104" r="3" fill="#fff"/><ellipse cx="44" cy="120" rx="10" ry="6" fill="#ff8fa3"/><ellipse cx="156" cy="120" rx="10" ry="6" fill="#ff8fa3"/><path d="M88 144q12 10 24 0" fill="none" stroke="#1d2433" stroke-width="4" stroke-linecap="round"/></g></svg>
+<h1>Giữ lại khoảnh khắc bằng film.</h1>
+<p>Máy ảnh Instax Mini, film Instax và film cuộn Kodak, Fujifilm. Chọn máy, chọn film, đặt hàng và nhận tận nhà.</p>
+<a class="btn sun" href="#sanpham" style="text-decoration:none;display:inline-block">Xem sản phẩm</a>
+<div class="perks"><span>Ghi rõ hạn dùng của film</span><span>Kiểm tra hàng khi nhận</span><span>Thanh toán khi nhận hàng</span></div>
+</div>
+
+<section id="sanpham"><div class="wrap">
+<h2>Sản phẩm</h2>
+<div class="grid" id="products"></div>
+</div></section>
+
+<section id="video"><div class="wrap">
+<h2>Video từ Nostalgia</h2>
+<div class="video" id="videoBox"></div>
+</div></section>
+
+<section class="about" id="gioithieu"><div class="wrap">
+<h2>Về cửa hàng</h2>
+<p>Có những ngày, khi thế giới ngoài kia trôi đi quá vội, con người ta bỗng chùng lại trong một khoảng lặng hoài niệm. Đó là lúc những ngón tay vô thức lật giở lại từng tấm ảnh đã ngả màu theo năm tháng, ngắm nghía những chốn cũ từng gắn bó, và mỉm cười khi tâm trí tự động phát lại đoạn âm thanh của những cuộc trò chuyện từ nhiều năm trước. Ký ức hóa ra không nằm trong tiềm thức, nó nằm trên những bề mặt phẳng phiu mà ta có thể chạm vào.<br><br>Nostalgia sinh ra từ chính những khoảnh khắc dịu dàng ấy. Giữa thời đại mà mọi thứ đều lưu trữ trên mây và dễ dàng bị lãng quên sau một cú vuốt màn hình, Nostalgia muốn mang trở lại cảm giác cầm nắm được sự hoài niệm. Từng chiếc máy ảnh Instax và những cuộn film nhỏ xinh ở đây không đơn thuần là món đồ công nghệ, mà là công cụ để gói ghém hiện tại thành ký ức ngay trong tích tắc. Để rồi nhiều năm sau, khi lật giở lại, những thước ảnh ấy sẽ lại thì thầm kể câu chuyện của ngày hôm nay.</p>
+</div></section>
+
+<section id="lienhe"><div class="wrap">
+<h2>Liên hệ</h2>
+<p>Điện thoại / Zalo: <a href="https://zalo.me/0765722405">0765 722 405</a> · Email: <a href="mailto:leminhat24@gmail.com">leminhat24@gmail.com</a></p>
+</div></section>
+</main>
+<footer><div class="wrap">© 2026 Nostalgia. Mọi quyền được bảo lưu.</div></footer>
+
+<aside id="cart" aria-label="Giỏ hàng">
+<div class="row"><strong>Giỏ hàng của bạn</strong><button class="btn" id="close">Đóng</button></div>
+<div id="items"></div>
+<div class="total"><span>Tổng cộng</span><span id="sum">0đ</span></div>
+<form id="order">
+<label>Họ tên<input name="name" required autocomplete="name"></label>
+<label>Số điện thoại<input name="phone" required inputmode="tel" autocomplete="tel"></label>
+<label>Địa chỉ nhận hàng<input name="addr" required autocomplete="street-address"></label>
+<button class="btn sun" type="submit">Đặt hàng</button>
+</form>
+<div id="msg" hidden></div>
+</aside>
+
+<script>
+// Sửa danh sách sản phẩm tại đây: tên, mô tả, giá (đồng), biểu tượng
+const PRODUCTS=[
+{id:1,img:"images/mini12.jpg",name:"Instax Mini 12 / Mini 13",desc:"Màu pastel, dễ dùng, chụp và in ngay",price:2300000,icon:"📷"},
+{id:2,img:"images/evo.jpg",name:"Instax Mini Evo / LiPlay",desc:"Xem lại ảnh trước khi in, lưu thẻ nhớ, kết nối điện thoại",price:5400000,icon:"📱"},
+{id:3,img:"images/link.jpg",name:"Instax Mini Link",desc:"Máy in ảnh mini, in từ điện thoại qua Bluetooth",price:3000000,icon:"🖨️"},
+{id:4,img:"images/film-trang-10.jpg",name:"Film Instax viền trắng",desc:"Hộp 10 tấm",price:290000,icon:"🎞️"},
+{id:5,img:"images/film-trang-20.jpg",name:"Film Instax viền trắng",desc:"Hộp đôi 20 tấm, tiết kiệm hơn",price:470000,icon:"🎞️"},
+{id:6,img:"images/film-mau.jpg",name:"Film Instax viền màu / họa tiết",desc:"Hộp 10 tấm, mẫu giới hạn",price:315000,icon:"🎨"}
+];
+const fmt=n=>n.toLocaleString("vi-VN")+"đ";
+const cart={};
+const $=s=>document.querySelector(s);
+$("#products").innerHTML=PRODUCTS.map(p=>`<div class="card"><div class="pic">${p.img?`<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.replaceWith('${p.icon}')">`:`<span aria-hidden="true">${p.icon}</span>`}</div><div class="body"><h3>${p.name}</h3><small>${p.desc}</small><div class="price">${fmt(p.price)}</div><button class="btn" data-add="${p.id}">Thêm vào giỏ</button></div></div>`).join("");
+function render(){
+  const ids=Object.keys(cart);let sum=0,count=0;
+  $("#items").innerHTML=ids.length?ids.map(id=>{const p=PRODUCTS.find(x=>x.id==id),q=cart[id];sum+=p.price*q;count+=q;
+    return `<div class="row"><div>${p.name}<br><small>${fmt(p.price)}</small></div><div class="qty"><button data-dec="${id}" aria-label="Giảm">−</button> ${q} <button data-add="${id}" aria-label="Tăng">+</button></div></div>`}).join(""):"<p>Giỏ hàng đang trống. Hãy chọn sản phẩm bạn thích.</p>";
+  $("#sum").textContent=fmt(sum);$("#count").textContent=count;
+}
+document.addEventListener("click",e=>{
+  const a=e.target.dataset.add,d=e.target.dataset.dec;
+  if(a){cart[a]=(cart[a]||0)+1;render();$("#cart").classList.add("open")}
+  if(d){cart[d]--;if(cart[d]<=0)delete cart[d];render()}
+});
+$("#cartBtn").onclick=()=>$("#cart").classList.add("open");
+$("#close").onclick=()=>$("#cart").classList.remove("open");
+$("#order").onsubmit=e=>{
+  e.preventDefault();
+  if(!Object.keys(cart).length){alert("Giỏ hàng đang trống.");return}
+  const f=new FormData(e.target);
+  const lines=Object.keys(cart).map(id=>{const p=PRODUCTS.find(x=>x.id==id);return `- ${p.name} x${cart[id]}: ${fmt(p.price*cart[id])}`});
+  const msg=`Đơn hàng mới\nKhách: ${f.get("name")} – ${f.get("phone")}\nĐịa chỉ: ${f.get("addr")}\n${lines.join("\n")}\nTổng: ${$("#sum").textContent}`;
+  const m=$("#msg");m.hidden=false;m.textContent="Cảm ơn bạn! Hãy gửi nội dung đơn này qua Zalo của cửa hàng để xác nhận:\n\n"+msg;
+};
+// Dán mã video YouTube vào đây (phần sau "v=" trong link, ví dụ dQw4w9WgXcQ). Để trống nếu chưa có video.
+const YOUTUBE_ID="";
+$("#videoBox").innerHTML=YOUTUBE_ID?`<iframe src="https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}" title="Video Nostalgia" allowfullscreen loading="lazy"></iframe>`:"<p>Video sẽ xuất hiện ở đây.</p>";
+render();
+</script>
+</body>
+</html>

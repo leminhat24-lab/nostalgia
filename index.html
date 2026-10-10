@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nostalgia - Máy ảnh Instax & film</title>
+<title>Nostalgia – Máy ảnh Instax & film</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap">
 <style>
 :root{--ink:#1d2433;--paper:#f4f5f8;--card:#fff;--mint:#dfe5f0;--sun:#f2a900;--muted:#566077;--line:#d9deea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -37,6 +37,9 @@ h2{font-size:1.6rem;margin:0 0 20px}
 @keyframes bob{50%{transform:translateY(-8px)}}
 .video{aspect-ratio:16/9;max-width:720px;border-radius:12px;overflow:hidden;background:var(--mint);display:grid;place-items:center;text-align:center;color:var(--muted)}
 .video iframe{width:100%;height:100%;border:0}
+.sw{display:flex;gap:8px;margin:2px 0}
+.swb{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);padding:0}
+.swb.on{outline:3px solid var(--sun);outline-offset:2px}
 @media (max-width:760px){.mascot{position:static;display:block;width:150px;margin:0 0 16px}}
 @media (prefers-reduced-motion:reduce){.m{animation:none}}
 .card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
@@ -70,7 +73,7 @@ aside.open{transform:none}
 <main id="top">
 <div class="wrap hero">
 <svg class="mascot" viewBox="0 0 200 190" role="img" aria-label="Linh vật máy ảnh của Nostalgia"><g class="m"><rect x="70" y="22" width="36" height="24" rx="7" fill="#1d2433"/><rect x="132" y="26" width="24" height="14" rx="5" fill="#1d2433"/><rect x="56" y="156" width="30" height="16" rx="8" fill="#1d2433"/><rect x="114" y="156" width="30" height="16" rx="8" fill="#1d2433"/><rect x="20" y="40" width="160" height="120" rx="28" fill="#f2a900" stroke="#1d2433" stroke-width="5"/><rect x="34" y="52" width="26" height="16" rx="5" fill="#fff" stroke="#1d2433" stroke-width="3"/><circle cx="100" cy="96" r="38" fill="#fff" stroke="#1d2433" stroke-width="5"/><circle cx="100" cy="96" r="25" fill="#1d2433"/><circle cx="100" cy="96" r="13" fill="#3a4a6b"/><circle cx="92" cy="88" r="6" fill="#fff"/><circle cx="109" cy="104" r="3" fill="#fff"/><ellipse cx="44" cy="120" rx="10" ry="6" fill="#ff8fa3"/><ellipse cx="156" cy="120" rx="10" ry="6" fill="#ff8fa3"/><path d="M88 144q12 10 24 0" fill="none" stroke="#1d2433" stroke-width="4" stroke-linecap="round"/></g></svg>
-<h1>Giữ lại khoảnh khắc bằng film ảnh.</h1>
+<h1>Giữ lại khoảnh khắc bằng film.</h1>
 <p>Máy ảnh Instax Mini, film Instax và film cuộn Kodak, Fujifilm. Chọn máy, chọn film, đặt hàng và nhận tận nhà.</p>
 <a class="btn sun" href="#sanpham" style="text-decoration:none;display:inline-block">Xem sản phẩm</a>
 <div class="perks"><span>Ghi rõ hạn dùng của film</span><span>Kiểm tra hàng khi nhận</span><span>Thanh toán khi nhận hàng</span></div>
@@ -114,24 +117,31 @@ aside.open{transform:none}
 <script>
 // Sửa danh sách sản phẩm tại đây: tên, mô tả, giá (đồng), biểu tượng
 const PRODUCTS=[
-{id:1,img:"images/mini12.jpg",name:"Instax Mini 12 / Mini 13",desc:"Màu pastel, dễ dùng, chụp và in ngay",price:2300000,icon:"📷"},
-{id:2,img:"images/evo.jpg",name:"Instax Mini Evo / LiPlay",desc:"Xem lại ảnh trước khi in, lưu thẻ nhớ, kết nối điện thoại",price:5400000,icon:"📱"},
-{id:3,img:"images/link.jpg",name:"Instax Mini Link",desc:"Máy in ảnh mini, in từ điện thoại qua Bluetooth",price:3000000,icon:"🖨️"},
-{id:4,img:"images/film-trang-10.jpg",name:"Film Instax viền trắng",desc:"Hộp 10 tấm",price:290000,icon:"🎞️"},
-{id:5,img:"images/film-trang-20.jpg",name:"Film Instax viền trắng",desc:"Hộp đôi 20 tấm, tiết kiệm hơn",price:470000,icon:"🎞️"},
-{id:6,img:"images/film-mau.jpg",name:"Film Instax viền màu / họa tiết",desc:"Hộp 10 tấm, mẫu giới hạn",price:315000,icon:"🎨"}
+{id:1,name:"Instax Mini 13",desc:"Màu pastel, dễ dùng, chụp và in ngay",price:2300000,variants:[{name:"Lagoon Green",color:"#6fb5a5",img:"images/mini13-lagoon-green.jpg"},{name:"Candy Pink",color:"#f4a9c0",img:"images/mini13-candy-pink.jpg"},{name:"Dreamy Purple",color:"#b6a2e0",img:"images/mini13-dreamy-purple.jpg"},{name:"Frost Blue",color:"#a9cde8",img:"images/mini13-frost-blue.jpg"},{name:"Clay White",color:"#ece6dc",img:"images/mini13-clay-white.jpg"}],icon:"📷"},
+{id:2,name:"Instax Mini 12",desc:"Nhỏ gọn, dễ dùng, chụp và in ngay",price:2300000,variants:[{name:"Mint Green",color:"#a8dcc3",img:"images/mini12-mint-green.jpg"},{name:"Pastel Blue",color:"#a9c9ee",img:"images/mini12-pastel-blue.jpg"},{name:"Lilac Purple",color:"#c3b1e1",img:"images/mini12-lilac-purple.jpg"},{name:"Clay White",color:"#ece6dc",img:"images/mini12-clay-white.jpg"},{name:"Candy Pink",color:"#f4a9c0",img:"images/mini12-candy-pink.jpg"}],icon:"📷"},
+{id:3,img:"images/evo.jpg",name:"Instax Mini Evo",desc:"Xem lại ảnh trước khi in, lưu thẻ nhớ, kết nối điện thoại",price:5400000,icon:"📱"},
+{id:4,img:"images/liplay.jpg",name:"Instax Mini LiPlay",desc:"Xem lại ảnh trước khi in, ghi âm, kết nối điện thoại",price:5400000,icon:"📱"},
+{id:5,img:"images/link.jpg",name:"Instax Mini Link",desc:"Máy in ảnh mini, in từ điện thoại qua Bluetooth",price:3000000,icon:"🖨️"},
+{id:6,img:"images/film-trang-10.jpg",name:"Film Instax viền trắng",desc:"Hộp 10 tấm",price:290000,icon:"🎞️"},
+{id:7,img:"images/film-trang-20.jpg",name:"Film Instax viền trắng",desc:"Hộp đôi 20 tấm, tiết kiệm hơn",price:470000,icon:"🎞️"},
+{id:8,img:"images/film-mau.jpg",name:"Film Instax viền màu / họa tiết",desc:"Hộp 10 tấm, mẫu giới hạn",price:315000,icon:"🎨"}
 ];
 const fmt=n=>n.toLocaleString("vi-VN")+"đ";
 const cart={};
 const $=s=>document.querySelector(s);
-$("#products").innerHTML=PRODUCTS.map(p=>`<div class="card"><div class="pic">${p.img?`<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.replaceWith('${p.icon}')">`:`<span aria-hidden="true">${p.icon}</span>`}</div><div class="body"><h3>${p.name}</h3><small>${p.desc}</small><div class="price">${fmt(p.price)}</div><button class="btn" data-add="${p.id}">Thêm vào giỏ</button></div></div>`).join("");
+const sel={};
+function drawProducts(){$("#products").innerHTML=PRODUCTS.map(p=>{const vi=sel[p.id]||0,v=p.variants?p.variants[vi]:null,im=v?v.img:p.img;return `<div class="card"><div class="pic">${im?`<img src="${im}" alt="${p.name}" loading="lazy" onerror="this.replaceWith('${p.icon}')">`:`<span aria-hidden="true">${p.icon}</span>`}</div><div class="body"><h3>${p.name}</h3><small>${p.desc}</small>${p.variants?`<div class="sw" role="group" aria-label="Chọn màu">${p.variants.map((x,i)=>`<button class="swb${i==vi?" on":""}" data-sw="${p.id}:${i}" style="background:${x.color}" title="${x.name}" aria-label="${x.name}"></button>`).join("")}</div><small>Màu: ${v.name}</small>`:""}<div class="price">${fmt(p.price)}</div><button class="btn" data-add="${p.variants?p.id+":"+vi:p.id}">Thêm vào giỏ</button></div></div>`}).join("")}
+drawProducts();
+function label(id){const[pid,vi]=id.split(":");const p=PRODUCTS.find(x=>x.id==pid);return vi===undefined?p.name:p.name+" – "+p.variants[vi].name}
 function render(){
   const ids=Object.keys(cart);let sum=0,count=0;
-  $("#items").innerHTML=ids.length?ids.map(id=>{const p=PRODUCTS.find(x=>x.id==id),q=cart[id];sum+=p.price*q;count+=q;
-    return `<div class="row"><div>${p.name}<br><small>${fmt(p.price)}</small></div><div class="qty"><button data-dec="${id}" aria-label="Giảm">−</button> ${q} <button data-add="${id}" aria-label="Tăng">+</button></div></div>`}).join(""):"<p>Giỏ hàng đang trống. Hãy chọn sản phẩm bạn thích.</p>";
+  $("#items").innerHTML=ids.length?ids.map(id=>{const p=PRODUCTS.find(x=>x.id==id.split(":")[0]),q=cart[id],nm=label(id);sum+=p.price*q;count+=q;
+    return `<div class="row"><div>${nm}<br><small>${fmt(p.price)}</small></div><div class="qty"><button data-dec="${id}" aria-label="Giảm">−</button> ${q} <button data-add="${id}" aria-label="Tăng">+</button></div></div>`}).join(""):"<p>Giỏ hàng đang trống. Hãy chọn sản phẩm bạn thích.</p>";
   $("#sum").textContent=fmt(sum);$("#count").textContent=count;
 }
 document.addEventListener("click",e=>{
+  const sw=e.target.closest("[data-sw]");
+  if(sw){const[pid,vi]=sw.dataset.sw.split(":");sel[pid]=+vi;drawProducts();return}
   const a=e.target.dataset.add,d=e.target.dataset.dec;
   if(a){cart[a]=(cart[a]||0)+1;render();$("#cart").classList.add("open")}
   if(d){cart[d]--;if(cart[d]<=0)delete cart[d];render()}
@@ -142,12 +152,12 @@ $("#order").onsubmit=e=>{
   e.preventDefault();
   if(!Object.keys(cart).length){alert("Giỏ hàng đang trống.");return}
   const f=new FormData(e.target);
-  const lines=Object.keys(cart).map(id=>{const p=PRODUCTS.find(x=>x.id==id);return `- ${p.name} x${cart[id]}: ${fmt(p.price*cart[id])}`});
+  const lines=Object.keys(cart).map(id=>{const p=PRODUCTS.find(x=>x.id==id.split(":")[0]);return `- ${label(id)} x${cart[id]}: ${fmt(p.price*cart[id])}`});
   const msg=`Đơn hàng mới\nKhách: ${f.get("name")} – ${f.get("phone")}\nĐịa chỉ: ${f.get("addr")}\n${lines.join("\n")}\nTổng: ${$("#sum").textContent}`;
   const m=$("#msg");m.hidden=false;m.textContent="Cảm ơn bạn! Hãy gửi nội dung đơn này qua Zalo của cửa hàng để xác nhận:\n\n"+msg;
 };
 // Dán mã video YouTube vào đây (phần sau "v=" trong link, ví dụ dQw4w9WgXcQ). Để trống nếu chưa có video.
-const YOUTUBE_ID="";
+const YOUTUBE_ID="Gq_y3efp2aY";
 $("#videoBox").innerHTML=YOUTUBE_ID?`<iframe src="https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}" title="Video Nostalgia" allowfullscreen loading="lazy"></iframe>`:"<p>Video sẽ xuất hiện ở đây.</p>";
 render();
 </script>
